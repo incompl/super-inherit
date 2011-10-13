@@ -1,4 +1,4 @@
-Object.inherit = function(o) {
+Object.prototype.inherit = function(o) {
     var result;
     function F() {}
     F.prototype = this;
@@ -11,9 +11,9 @@ Object.inherit = function(o) {
         }
     }
     return result;
-};
+}
 
-Object._super = function _super(_internal, method) {
+Object.prototype._super = function _super(_internal, method) {
     var args = [].slice.call(arguments);
     if (typeof _internal === 'string') {
         method = _internal;
@@ -25,4 +25,15 @@ Object._super = function _super(_internal, method) {
     }
     args[0].context = Object.getPrototypeOf(_internal.context);
     return _super.apply(this, args);
+}
+
+if (Object.prototype.getPrototypeOf === undefined) {
+    Object.prototype.getPrototypeOf = function(o) {
+        if (o.__proto__ !== undefined) {
+            return o.__proto__;
+        }
+        else if (o.constructor !== undefined) {
+            return o.constructor.prototype;
+        }
+    }
 }
