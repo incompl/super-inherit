@@ -2,7 +2,7 @@ window.onload = function() {
 
     var Animal = Object.inherit({
         getName: function(prefix) {
-            return prefix + this.name;
+            return (prefix || '') + this.name;
         }
     });
 
@@ -12,14 +12,24 @@ window.onload = function() {
         
     var Dog = Mammal.inherit({
         getName: function() {
-            return this._super('getName', "Introducing ") + ' the dog';
+            return this._super('getName', "Introducing a cool dog: ");
         }
     });
 
-    var rover = Dog.inherit({name:'Spot'});
+    var spot = Dog.inherit({name:'Spot'});
 
-    var puppy = rover.inherit({name:"Spot Jr."});
+    var puppy = spot.inherit({
+        getName: function() {
+            return this._super('getName') + ' Jr.';
+        }
+    });
 
     document.getElementById('output').innerHTML = puppy.getName();
+
+    var rover = Dog.inherit({name:'Rover'});
+
+    rover.inherit(puppy);
+
+    document.getElementById('output2').innerHTML = puppy.getName();
 
 };
