@@ -1,8 +1,8 @@
 window.onload = function() {
 
-    var Animal = Object.inherit({
+    var Animal = {}.inherit({
         getName: function(prefix) {
-            return (prefix || '') + this._name;
+            return (prefix || '') + this.name;
         }
     });
 
@@ -16,7 +16,7 @@ window.onload = function() {
         }
     });
 
-    var spot = Dog.inherit({_name:'Spot'});
+    var spot = Dog.inherit({name:'Spot'});
 
     var puppy = spot.inherit({
         getName: function() {
@@ -26,7 +26,7 @@ window.onload = function() {
 
     document.getElementById('output').innerHTML = puppy.getName();
 
-    var rover = Dog.inherit({_name:'Rover'});
+    var rover = Dog.inherit({name:'Rover'});
 
     puppy = rover.inherit(puppy);
 
