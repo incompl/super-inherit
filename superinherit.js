@@ -20,7 +20,14 @@ Object.prototype._super = function _super(_internal, method) {
         _internal = {context: this, orig: this, caller:_super.caller};
         args.unshift(_internal);
     }
-    if (_internal.context[method] === _internal.caller && _internal.context.hasOwnProperty(method)) {
+    var atCallerLevel = false;
+    for (var key in _internal.context) {
+      if (_internal.context[key] === _internal.caller) {
+        atCallerLevel = true;
+        break;
+      }
+    }
+    if (atCallerLevel && _internal.context.hasOwnProperty(method)) {
         return Object.getPrototypeOf(_internal.context)[method].apply(_internal.orig, args.slice(2));
     }
     args[0].context = Object.getPrototypeOf(_internal.context);

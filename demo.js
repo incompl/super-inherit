@@ -1,10 +1,10 @@
 window.onload = function() {
 
-    var Animal = {}.inherit({
+    var Animal = {
         getName: function(prefix) {
             return (prefix || '') + this.name;
         }
-    });
+    };
 
     var Mammal = Animal.inherit({
         
