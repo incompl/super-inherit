@@ -1,4 +1,4 @@
-window.onload = function() {
+(function() {
 
     var Animal = {
         getName: function(prefix) {
@@ -32,4 +32,4 @@ window.onload = function() {
 
     document.getElementById('output2').innerHTML = puppy.getName();
 
-};
+})();
