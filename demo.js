@@ -6,19 +6,19 @@ window.onload = function() {
         }
     };
 
-    var Mammal = Animal.inherit({
+    var Mammal = Animal.beget({
         
     });
         
-    var Dog = Mammal.inherit({
+    var Dog = Mammal.beget({
         getName: function() {
             return this._super('getName', "Introducing a cool dog: ");
         }
     });
 
-    var spot = Dog.inherit({name:'Spot'});
+    var spot = Dog.beget({name:'Spot'});
 
-    var puppy = spot.inherit({
+    var puppy = spot.beget({
         getName: function() {
             return this._super('getName') + ' Jr.';
         }
@@ -26,9 +26,9 @@ window.onload = function() {
 
     document.getElementById('output').innerHTML = puppy.getName();
 
-    var rover = Dog.inherit({name:'Rover'});
+    var rover = Dog.beget({name:'Rover'});
 
-    puppy = rover.inherit(puppy);
+    puppy = rover.beget(puppy);
 
     document.getElementById('output2').innerHTML = puppy.getName();
 

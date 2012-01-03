@@ -1,0 +1,11 @@
+h1. superinherit
+
+Yet another way to do inheritance in JavaScript.
+
+* Objects beget objects.
+* Properties specified via object literal
+* _super provided for explicit delegation.
+
+See demo.js for usage example.
+
+_super does not work in IE6-8

@@ -1,5 +1,26 @@
-Object.prototype.inherit = function(o) {
-    var result;
+/*
+Copyright (C) 2012 Greg Smith <gsmith@incompl.com>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+
+Object.prototype.beget = function(o) {
     function F() {}
     F.prototype = this;
     var result = new F();
@@ -11,7 +32,7 @@ Object.prototype.inherit = function(o) {
         }
     }
     return result;
-}
+};
 
 Object.prototype._super = function _super(_internal, method) {
     var args = [].slice.call(arguments);
@@ -32,15 +53,4 @@ Object.prototype._super = function _super(_internal, method) {
     }
     args[0].context = Object.getPrototypeOf(_internal.context);
     return _super.apply(this, args);
-}
-
-if (Object.prototype.getPrototypeOf === undefined) {
-    Object.prototype.getPrototypeOf = function(o) {
-        if (o.__proto__ !== undefined) {
-            return o.__proto__;
-        }
-        else if (o.constructor !== undefined) {
-            return o.constructor.prototype;
-        }
-    }
-}
+};

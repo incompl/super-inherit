@@ -1,7 +1,7 @@
 // ==========================================
-// inherit module
+// beget module
 
-module('inherit');
+module('betget');
 
 test('simple inheritance', function() {
 
@@ -9,7 +9,7 @@ test('simple inheritance', function() {
     foo:'val1'
   };
 
-  var child = Parent.inherit({
+  var child = Parent.beget({
     bar:'val2'
   });
 
@@ -31,7 +31,7 @@ test('simple super', function() {
     }
   };
 
-  var child = Parent.inherit({
+  var child = Parent.beget({
     doSomething:function() {
       return this._super('doSomething');
     },
@@ -62,7 +62,7 @@ test('advanced super', function() {
     }
   };
 
-  var Middle = Top.inherit({
+  var Middle = Top.beget({
     doTop:function() {
       return this._super('doTop');   
     },
@@ -71,7 +71,7 @@ test('advanced super', function() {
     }
   });
 
-  var Bottom = Middle.inherit({
+  var Bottom = Middle.beget({
     foo:function() {
       return this._super('foo');
     },
@@ -98,7 +98,7 @@ test('parameterized super', function() {
     }
   };
 
-  var Bottom = Top.inherit({
+  var Bottom = Top.beget({
     multi: function() {
       return this._super('multi', 1, 2, 3, 4, 5);
     }
@@ -108,7 +108,7 @@ test('parameterized super', function() {
 
 });
 
-test('super without inherit', function() {
+test('super without beget', function() {
 
   function Foo() {
     this.action = function() {
@@ -125,6 +125,6 @@ test('super without inherit', function() {
   Bar.prototype = foo;
   var bar = new Bar();
 
-  equal(bar.action(), 'result', 'super without inherit');
+  equal(bar.action(), 'result', 'super without beget');
 
 });
